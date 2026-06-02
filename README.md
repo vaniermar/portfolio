@@ -6,7 +6,7 @@ Static portfolio site for GitHub Pages.
 
 - Update project text, tags, contact links, and image paths in `site-data.js`.
 - Add or replace images in `assets/images`.
-- Add your portrait at `assets/images/marion-portrait.jpg`, then set `personal.portrait` in `site-data.js`.
+- Replace `assets/images/marion-portrait.jpg` to update the hero portrait.
 - Replace `assets/Marion_Vanier_Resume.pdf` with the real resume PDF when ready.
 - Keep `index.html`, `styles.css`, and `main.js` unless you are changing layout or behavior.
 - Empty contact links are hidden automatically, so add your LinkedIn or email URL when you are ready.

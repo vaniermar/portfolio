@@ -2,6 +2,7 @@ const data = window.portfolioData;
 
 const heroLede = document.querySelector("#hero-lede");
 const heroTitle = document.querySelector("#hero-title");
+const identityRole = document.querySelector("#identity-role");
 const portraitShell = document.querySelector("#portrait-shell");
 const focusList = document.querySelector("#focus-list");
 const proofStrip = document.querySelector("#proof-strip");
@@ -31,18 +32,30 @@ function listMarkup(items) {
   return items.map((item) => `<li>${item}</li>`).join("");
 }
 
+function renderPortraitPlaceholder() {
+  portraitShell.innerHTML = `
+    <div class="portrait-placeholder" aria-label="Portrait placeholder">
+      <span>MV</span>
+    </div>
+  `;
+}
+
 function renderHero() {
   heroTitle.textContent = data.personal.headline;
   heroLede.textContent = data.personal.intro;
+  identityRole.textContent = data.personal.role;
 
   if (data.personal.portrait) {
-    portraitShell.innerHTML = `<img src="${data.personal.portrait}" alt="${data.personal.portraitAlt}">`;
+    const portrait = new Image();
+    portrait.alt = data.personal.portraitAlt;
+    portrait.onload = () => {
+      portraitShell.innerHTML = "";
+      portraitShell.append(portrait);
+    };
+    portrait.onerror = renderPortraitPlaceholder;
+    portrait.src = data.personal.portrait;
   } else {
-    portraitShell.innerHTML = `
-      <div class="portrait-placeholder" aria-label="Portrait placeholder">
-        <span>MV</span>
-      </div>
-    `;
+    renderPortraitPlaceholder();
   }
 
   focusList.innerHTML = data.personal.focusAreas
@@ -151,70 +164,42 @@ function renderCaseStudy(project) {
 
   caseContent.innerHTML = `
     <article class="case-study">
-      <header class="case-hero">
-        <div>
+      <header class="case-header">
+        <div class="case-title-block">
           <p class="eyebrow">${project.kicker}</p>
           <h2 id="case-title">${project.title}</h2>
-          <p class="case-subtitle">${project.subtitle}</p>
+          <p class="case-subtitle">${project.summary}</p>
           ${
             project.link
               ? `<a class="button primary case-link" href="${project.link}" target="_blank" rel="noreferrer">${project.linkLabel || "Open project"}</a>`
               : ""
           }
         </div>
-        <div class="case-hero-visual">
-          ${imageMarkup(primaryImage)}
-        </div>
       </header>
 
-      <section class="case-facts" aria-label="${project.title} facts">
-        <div>
-          <span>Role</span>
-          <p>${project.role}</p>
-        </div>
-        <div>
-          <span>Status</span>
-          <p>${project.status}</p>
-        </div>
-        <div>
-          <span>Timeframe</span>
-          <p>${project.timeframe}</p>
-        </div>
-      </section>
+      <figure class="case-feature">
+        ${imageMarkup(primaryImage)}
+        ${primaryImage ? `<figcaption>${primaryImage.caption}</figcaption>` : ""}
+      </figure>
 
-      <section class="case-narrative">
-        <div>
-          <span>Challenge</span>
+      <section class="case-story">
+        <div class="case-story-card">
+          <span>Problem</span>
           <p>${project.challenge}</p>
         </div>
-        <div>
-          <span>Approach</span>
+        <div class="case-story-card">
+          <span>Solution</span>
           <p>${project.approach}</p>
         </div>
-        <div>
-          <span>Result</span>
+        <div class="case-story-card outcome">
+          <span>Outcome</span>
           <p>${project.result}</p>
-        </div>
-      </section>
-
-      <section class="case-columns">
-        <div>
-          <h3>Signals</h3>
-          <ul>${listMarkup(project.metrics)}</ul>
-        </div>
-        <div>
-          <h3>Key Tech</h3>
-          <ul>${listMarkup(project.tech)}</ul>
-        </div>
-        <div>
-          <h3>Applications</h3>
-          <ul>${listMarkup(project.applications)}</ul>
         </div>
       </section>
 
       ${
         secondaryImages.length
-          ? `<section class="case-gallery" aria-label="${project.title} supporting images">
+          ? `<section class="case-image-grid" aria-label="${project.title} supporting images">
               ${secondaryImages
                 .map(
                   (image) => `
@@ -228,6 +213,29 @@ function renderCaseStudy(project) {
             </section>`
           : ""
       }
+
+      <section class="case-details">
+        <div>
+          <span>Role</span>
+          <p>${project.role}</p>
+        </div>
+        <div>
+          <span>Status</span>
+          <p>${project.status}</p>
+        </div>
+        <div>
+          <span>Signals</span>
+          <ul>${listMarkup(project.metrics)}</ul>
+        </div>
+        <div>
+          <span>Key Tech</span>
+          <ul>${listMarkup(project.tech)}</ul>
+        </div>
+        <div>
+          <span>Applications</span>
+          <ul>${listMarkup(project.applications)}</ul>
+        </div>
+      </section>
     </article>
   `;
 }

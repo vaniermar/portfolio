@@ -2,7 +2,7 @@ window.portfolioData = {
   personal: {
     name: "Marion Vanier",
     role: "Applied ML & Embedded AI Engineer",
-    portrait: "",
+    portrait: "assets/images/marion-portrait.jpg",
     portraitAlt: "Portrait of Marion Vanier",
     headline: "I build applied AI for real-world systems.",
     intro:
@@ -199,6 +199,11 @@ window.portfolioData = {
       ],
       images: [
         {
+          src: "assets/images/multiplexer-setup.jpg",
+          alt: "Multiplexer setup during real-world use",
+          caption: "Setup during real-world usage",
+        },
+        {
           src: "assets/images/multiplexer-schematic.png",
           alt: "KiCad schematic for high-voltage multiplexer",
           caption: "KiCad schematic, with full schematic proprietary",
@@ -207,11 +212,6 @@ window.portfolioData = {
           src: "assets/images/multiplexer-control-app.png",
           alt: "Remote trigger control demo application",
           caption: "Remote trigger control demo app",
-        },
-        {
-          src: "assets/images/multiplexer-setup.jpg",
-          alt: "Multiplexer setup during real-world use",
-          caption: "Setup during real-world usage",
         },
       ],
     },
