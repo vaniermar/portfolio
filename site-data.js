@@ -4,14 +4,14 @@ window.portfolioData = {
     role: "Applied ML & Embedded AI Engineer",
     portrait: "assets/images/marion-portrait.jpg",
     portraitAlt: "Portrait of Marion Vanier",
-    headline: "I build applied AI for real-world systems.",
+    headline: "I build AI for real-world systems.",
     intro:
-      "I work across computer vision, sensing, robotics, embedded inference, and hardware-aware prototypes. My favorite problems start messy: noisy data, physical constraints, real users, and systems that need to work outside a notebook.",
+      "I work across computer vision, AI systems, robotics, embedded inference, and hardware-aware prototypes. My favorite problems start messy: noisy data, physical constraints, real users, and systems that need to work outside a notebook.",
     focusAreas: [
       "Computer vision systems",
       "Embedded AI deployments",
       "Synthetic data pipelines",
-      "Robotics and sensing prototypes",
+      "Robotics development",
     ],
   },
   contact: [
@@ -56,17 +56,17 @@ window.portfolioData = {
     {
       title: "Model development",
       body:
-        "Raw data, training loops, evaluation, and a prototype that real users can test.",
+        "From Raw Data to a AI systems deployed in the real-world.",
     },
     {
       title: "Embedded deployment",
       body:
-        "Inference cost, sensors, latency, control systems, and physical setup are part of the design from day one.",
+        "Designing embedded systems that solve real problems by designing electronic hardware, programming custom software, and ML deployment on edge devices.",
     },
     {
       title: "System validation",
       body:
-        "Screenshots, metrics, diagrams, and system decisions make the work easier to evaluate quickly.",
+        "Benchmark, metrics, diagrams, and system decisions make the work easier to evaluate quickly.",
     },
   ],
   projects: [
@@ -79,7 +79,7 @@ window.portfolioData = {
       link: "https://shouldislabthis.com",
       linkLabel: "Visit Should I Slab This",
       role: "End-to-end prototype: model workflow, image processing, app logic, and embedded inference path.",
-      status: "Functional prototype",
+      status: "Deployed Prototype",
       timeframe: "2026",
       summary:
         "A computer vision app for collectors: take one photo, identify the card, estimate value, and inspect condition signals.",
@@ -111,17 +111,17 @@ window.portfolioData = {
         {
           src: "assets/images/should-i-slab-passport.png",
           alt: "Card passport with condition scoring",
-          caption: "Card passport with condition",
+          caption: "Card condition passport",
         },
         {
           src: "assets/images/should-i-slab-condition-a.jpg",
           alt: "Card condition and passport detail screen",
-          caption: "Condition assessment",
+          caption: "Card Segmentation",
         },
         {
           src: "assets/images/should-i-slab-condition-b.jpg",
           alt: "Card segmentation and card ID result",
-          caption: "Card segmentation and ID",
+          caption: "Card ID",
         },
       ],
     },
@@ -160,12 +160,12 @@ window.portfolioData = {
         {
           src: "assets/images/tomography-real-sample.png",
           alt: "Sample plate data from real-world tomography",
-          caption: "Sample plate data from the real world",
+          caption: "Real Tomography-enhancement of a Metal Plate",
         },
         {
           src: "assets/images/tomography-synthetic.png",
           alt: "Synthetic tomography sample showing flaw and weld seam",
-          caption: "Synthetic data example with flaw and weld seam",
+          caption: "Synthetic Data Example",
         },
       ],
     },
@@ -206,12 +206,12 @@ window.portfolioData = {
         {
           src: "assets/images/multiplexer-schematic.png",
           alt: "KiCad schematic for high-voltage multiplexer",
-          caption: "KiCad schematic, with full schematic proprietary",
+          caption: "KiCad Schematic",
         },
         {
           src: "assets/images/multiplexer-control-app.png",
           alt: "Remote trigger control demo application",
-          caption: "Remote trigger control demo app",
+          caption: "Demo Control App",
         },
       ],
     },
