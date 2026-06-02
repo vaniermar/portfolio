@@ -243,7 +243,13 @@ window.portfolioData = {
         "Inventory management for scanning barcodes or tags in warehouses",
         "Personal assistant use cases, such as following the user to capture video or carry small items",
       ],
-      images: [],
+      images: [
+        {
+          src: "assets/images/tracker-drone.webp",
+          alt: "Small indoor tracker drone with front camera",
+          caption: "Tracker drone prototype",
+        },
+      ],
     },
   ],
 };
