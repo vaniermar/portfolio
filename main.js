@@ -21,6 +21,12 @@ function imageMarkup(image, className = "") {
   return `<img class="${className}" src="${image.src}" alt="${image.alt}">`;
 }
 
+function linkMarkup(item, className = "button secondary") {
+  const target = item.type === "email" || item.download ? "" : ` target="_blank" rel="noreferrer"`;
+  const download = item.download ? ` download="${item.download}"` : "";
+  return `<a class="${className}" href="${item.href}"${target}${download}>${item.label}</a>`;
+}
+
 function listMarkup(items) {
   return items.map((item) => `<li>${item}</li>`).join("");
 }
@@ -64,7 +70,7 @@ function renderProjects() {
       const number = String(index + 1).padStart(2, "0");
 
       return `
-        <article class="project-card" data-project-id="${project.id}">
+        <article class="project-card" data-project-id="${project.id}" tabindex="0">
           <div class="project-media">
             ${imageMarkup(image)}
           </div>
@@ -79,9 +85,16 @@ function renderProjects() {
             <div class="tag-row">
               ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
             </div>
-            <button class="card-action" type="button" data-open-project="${project.id}">
-              Open case study
-            </button>
+            <div class="project-actions">
+              <button class="card-action" type="button" data-open-project="${project.id}">
+                View details
+              </button>
+              ${
+                project.link
+                  ? `<a class="card-action external" href="${project.link}" target="_blank" rel="noreferrer">Live site</a>`
+                  : ""
+              }
+            </div>
           </div>
         </article>
       `;
@@ -128,7 +141,7 @@ function renderGallery() {
 function renderContact() {
   contactLinks.innerHTML = data.contact
     .filter((item) => item.href)
-    .map((item) => `<a class="button secondary light" href="${item.href}" target="_blank" rel="noreferrer">${item.label}</a>`)
+    .map((item) => linkMarkup(item, "button secondary light"))
     .join("");
 }
 
@@ -143,6 +156,11 @@ function renderCaseStudy(project) {
           <p class="eyebrow">${project.kicker}</p>
           <h2 id="case-title">${project.title}</h2>
           <p class="case-subtitle">${project.subtitle}</p>
+          ${
+            project.link
+              ? `<a class="button primary case-link" href="${project.link}" target="_blank" rel="noreferrer">${project.linkLabel || "Open project"}</a>`
+              : ""
+          }
         </div>
         <div class="case-hero-visual">
           ${imageMarkup(primaryImage)}
@@ -231,6 +249,8 @@ function closeProject() {
 function bindInteractions() {
   projectGrid.addEventListener("click", (event) => {
     const button = event.target.closest("[data-open-project]");
+    const externalLink = event.target.closest("a");
+    if (externalLink && !button) return;
     const card = event.target.closest("[data-project-id]");
     const projectId = button?.dataset.openProject || card?.dataset.projectId;
     if (projectId) openProject(projectId);

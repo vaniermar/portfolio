@@ -6,7 +6,7 @@ window.portfolioData = {
     portraitAlt: "Portrait of Marion Vanier",
     headline: "I build applied AI for real-world systems.",
     intro:
-      "I work across computer vision, sensing, robotics, embedded inference, and hardware-aware prototypes. My favorite problems start messy: noisy data, physical constraints, real users, and systems that have to work outside a notebook.",
+      "I work across computer vision, sensing, robotics, embedded inference, and hardware-aware prototypes. My favorite problems start messy: noisy data, physical constraints, real users, and systems that need to work outside a notebook.",
     focusAreas: [
       "Computer vision systems",
       "Embedded AI deployments",
@@ -16,16 +16,22 @@ window.portfolioData = {
   },
   contact: [
     {
+      label: "Email",
+      href: "mailto:vaniermar@gmail.com",
+      type: "email",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/marion.vanier/",
+    },
+    {
       label: "GitHub",
       href: "https://github.com/vaniermar",
     },
     {
-      label: "LinkedIn",
-      href: "",
-    },
-    {
-      label: "Email",
-      href: "",
+      label: "Resume",
+      href: "assets/Marion_Vanier_Resume.pdf",
+      download: "Marion_Vanier_Resume.pdf",
     },
   ],
   highlights: [
@@ -48,19 +54,19 @@ window.portfolioData = {
   ],
   capabilities: [
     {
-      title: "Model to prototype",
+      title: "Model development",
       body:
-        "I can take a model from raw data and training loops into a prototype that users can actually test.",
+        "Raw data, training loops, evaluation, and a prototype that real users can test.",
     },
     {
-      title: "Hardware-aware AI",
+      title: "Embedded deployment",
       body:
-        "I think about inference cost, sensors, latency, control systems, and physical setup early in the build.",
+        "Inference cost, sensors, latency, control systems, and physical setup are part of the design from day one.",
     },
     {
-      title: "Evidence-first storytelling",
+      title: "System validation",
       body:
-        "I try to make the result visible: screenshots, metrics, diagrams, and the decisions behind the system.",
+        "Screenshots, metrics, diagrams, and system decisions make the work easier to evaluate quickly.",
     },
   ],
   projects: [
@@ -70,11 +76,13 @@ window.portfolioData = {
       kicker: "Collector tool / Edge CV",
       subtitle: "Instantly identify, value, and track cards in your collection.",
       tags: ["Computer Vision", "Card ID", "Condition Assessment", "Edge AI"],
+      link: "https://shouldislabthis.com",
+      linkLabel: "Visit Should I Slab This",
       role: "End-to-end prototype: model workflow, image processing, app logic, and embedded inference path.",
       status: "Functional prototype",
       timeframe: "2026",
       summary:
-        "Should I Slab This helps collectors know what is in their binder by identifying, valuing, and assessing the condition of cards from a single photo.",
+        "A computer vision app for collectors: take one photo, identify the card, estimate value, and inspect condition signals.",
       challenge:
         "TCG card collectors need to quickly assess a card they just pulled, bought, or are about to sell. Most downstream mechanisms are grading, marketplaces, or auction houses, with nothing directly in the hand of the collector.",
       approach:
@@ -171,7 +179,7 @@ window.portfolioData = {
       status: "Functional hardware prototype",
       timeframe: "Internal NDT system",
       summary:
-        "A high-voltage NDT multiplexer with a built-in remote trigger, designed to work with an existing software system.",
+        "A high-voltage NDT multiplexer with built-in remote triggering for repeatable source generation.",
       challenge:
         "Source generation for NDT signals requires high voltage and precise control, but off-the-shelf solutions are expensive and not compatible with existing systems.",
       approach:
