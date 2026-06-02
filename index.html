@@ -6,7 +6,7 @@
     <title>Marion Vanier | Applied ML & Embedded AI Engineer</title>
     <meta
       name="description"
-      content="Portfolio for Marion Vanier, an applied ML and embedded AI engineer building AI systems for robotics, sensing, computer vision, and real-world deployments."
+      content="Marion Vanier is an applied ML and embedded AI engineer building computer vision, robotics, sensing, and real-world deployment systems."
     >
     <meta property="og:title" content="Marion Vanier | Applied ML & Embedded AI Engineer">
     <meta
@@ -19,70 +19,77 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <a class="skip-link" href="#projects">Skip to projects</a>
+
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Marion Vanier home">MARION.VANIER</a>
+      <a class="brand" href="#top" aria-label="Marion Vanier home">
+        <span>Marion</span>
+        <span>Vanier</span>
+      </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="#projects">Projects</a>
-        <a href="#gallery">Gallery</a>
+        <a href="#projects">Work</a>
+        <a href="#stack">Stack</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero section-grid" aria-labelledby="hero-title">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Applied ML & Embedded AI Engineer</p>
-          <h1 id="hero-title">Marion<br>Vanier.</h1>
-          <p class="hero-lede">
-            25-year-old Applied ML & Embedded AI Engineer building AI systems for robotics,
-            sensing, computer vision, and physical real-world deployments.
-          </p>
+          <p class="eyebrow">Applied ML / Embedded AI / Robotics</p>
+          <h1 id="hero-title"></h1>
+          <p class="hero-lede" id="hero-lede"></p>
           <div class="hero-actions">
-            <a class="button primary" href="#projects">View Projects</a>
-            <a class="button secondary" href="#contact">Contact</a>
+            <a class="button primary" href="#projects">View selected work</a>
+            <a class="button secondary" href="#contact">Get in touch</a>
           </div>
         </div>
-        <figure class="hero-media">
-          <img src="assets/images/should-i-slab-overview.jpg" alt="Trading card identification workflow from Should I Slab This">
-          <figcaption>Computer vision, edge AI, sensing, and embedded systems.</figcaption>
-        </figure>
+
+        <aside class="identity-panel" aria-label="Marion Vanier profile">
+          <div class="portrait-shell" id="portrait-shell"></div>
+          <div class="identity-copy">
+            <p class="identity-name">Marion Vanier</p>
+            <p>25-year-old Applied ML & Embedded AI Engineer.</p>
+          </div>
+          <div class="focus-list" id="focus-list"></div>
+        </aside>
       </section>
 
-      <section class="intro-band" aria-label="Portfolio focus">
-        <div>
-          <span>Current focus</span>
-          <strong>Applied machine learning that leaves the notebook and works in the real world.</strong>
-        </div>
-        <div>
-          <span>Strengths</span>
-          <strong>Computer vision, synthetic data, embedded inference, hardware-aware prototypes.</strong>
-        </div>
-      </section>
+      <section class="proof-strip" aria-label="Selected proof points" id="proof-strip"></section>
 
-      <section class="section" id="projects" aria-labelledby="projects-title">
+      <section class="section project-section" id="projects" aria-labelledby="projects-title">
         <div class="section-heading">
-          <p class="eyebrow">Featured Work</p>
-          <h2 id="projects-title">Projects recruiters can scan quickly.</h2>
+          <p class="eyebrow">Selected Builds</p>
+          <h2 id="projects-title">Clickable project cards with enough depth for a recruiter skim.</h2>
           <p>
-            Each project is framed around the problem, the approach, the result, and the tech that made it work.
+            The first screen gives the signal. Each card opens into a focused case study with context,
+            technical choices, outcomes, and supporting visuals.
           </p>
         </div>
-        <div class="project-list" id="project-list"></div>
+        <div class="project-grid" id="project-grid"></div>
       </section>
 
-      <section class="section gallery-section" id="gallery" aria-labelledby="gallery-title">
-        <div class="section-heading">
-          <p class="eyebrow">Gallery</p>
-          <h2 id="gallery-title">A closer look at the work.</h2>
+      <section class="section stack-section" id="stack" aria-labelledby="stack-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">How I Work</p>
+          <h2 id="stack-title">I bridge model quality, system constraints, and prototype reality.</h2>
         </div>
-        <div class="gallery-grid" id="gallery-grid"></div>
+        <div class="capability-grid" id="capability-grid"></div>
+      </section>
+
+      <section class="section evidence-section" aria-labelledby="evidence-title">
+        <div class="section-heading compact">
+          <p class="eyebrow">Visual Evidence</p>
+          <h2 id="evidence-title">Screenshots, diagrams, and hardware context.</h2>
+        </div>
+        <div class="gallery-rail" id="gallery-rail"></div>
       </section>
 
       <section class="section about-section" id="about" aria-labelledby="about-title">
-        <div class="section-heading">
+        <div>
           <p class="eyebrow">About</p>
-          <h2 id="about-title">I like building the bridge between model, hardware, and deployment.</h2>
+          <h2 id="about-title">I like the part where research becomes a working system.</h2>
         </div>
         <div class="about-copy">
           <p>
@@ -99,18 +106,25 @@
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
         <div>
           <p class="eyebrow">Contact</p>
-          <h2 id="contact-title">Interested in applied ML, robotics, sensing, or embedded AI?</h2>
+          <h2 id="contact-title">Looking for applied ML, robotics, sensing, or embedded AI?</h2>
         </div>
         <div class="contact-links" id="contact-links"></div>
       </section>
     </main>
+
+    <dialog class="case-dialog" id="case-dialog" aria-labelledby="case-title">
+      <div class="case-dialog-inner">
+        <button class="case-close" type="button" id="case-close" aria-label="Close case study">Close</button>
+        <div id="case-content"></div>
+      </div>
+    </dialog>
 
     <footer class="site-footer">
       <span>&copy; 2026 Marion Vanier.</span>
       <a href="#top">Back to top</a>
     </footer>
 
-    <script src="site-data.js"></script>
-    <script src="main.js"></script>
+    <script src="site-data.js?v=2"></script>
+    <script src="main.js?v=2"></script>
   </body>
 </html>

@@ -1,68 +1,104 @@
 const data = window.portfolioData;
 
-const projectList = document.querySelector("#project-list");
-const galleryGrid = document.querySelector("#gallery-grid");
+const heroLede = document.querySelector("#hero-lede");
+const heroTitle = document.querySelector("#hero-title");
+const portraitShell = document.querySelector("#portrait-shell");
+const focusList = document.querySelector("#focus-list");
+const proofStrip = document.querySelector("#proof-strip");
+const projectGrid = document.querySelector("#project-grid");
+const capabilityGrid = document.querySelector("#capability-grid");
+const galleryRail = document.querySelector("#gallery-rail");
 const contactLinks = document.querySelector("#contact-links");
+const dialog = document.querySelector("#case-dialog");
+const caseContent = document.querySelector("#case-content");
+const caseClose = document.querySelector("#case-close");
 
-function createList(title, items) {
-  if (!items.length) return "";
+function imageMarkup(image, className = "") {
+  if (!image) {
+    return `<div class="visual-placeholder ${className}" aria-hidden="true">MV</div>`;
+  }
 
-  return `
-    <div class="detail-list">
-      <h4>${title}</h4>
-      <ul>
-        ${items.map((item) => `<li>${item}</li>`).join("")}
-      </ul>
-    </div>
-  `;
+  return `<img class="${className}" src="${image.src}" alt="${image.alt}">`;
+}
+
+function listMarkup(items) {
+  return items.map((item) => `<li>${item}</li>`).join("");
+}
+
+function renderHero() {
+  heroTitle.textContent = data.personal.headline;
+  heroLede.textContent = data.personal.intro;
+
+  if (data.personal.portrait) {
+    portraitShell.innerHTML = `<img src="${data.personal.portrait}" alt="${data.personal.portraitAlt}">`;
+  } else {
+    portraitShell.innerHTML = `
+      <div class="portrait-placeholder" aria-label="Portrait placeholder">
+        <span>MV</span>
+      </div>
+    `;
+  }
+
+  focusList.innerHTML = data.personal.focusAreas
+    .map((item) => `<span>${item}</span>`)
+    .join("");
+}
+
+function renderProof() {
+  proofStrip.innerHTML = data.highlights
+    .map(
+      (item) => `
+        <div class="proof-item">
+          <strong>${item.value}</strong>
+          <span>${item.label}</span>
+        </div>
+      `
+    )
+    .join("");
 }
 
 function renderProjects() {
-  projectList.innerHTML = data.projects
+  projectGrid.innerHTML = data.projects
     .map((project, index) => {
-      const heroImage = project.images[0];
-      const projectNumber = String(index + 1).padStart(2, "0");
-      const imageMarkup = heroImage
-        ? `<img src="${heroImage.src}" alt="${heroImage.alt}">`
-        : `<div class="image-placeholder" aria-hidden="true">${projectNumber}</div>`;
+      const image = project.images[0];
+      const number = String(index + 1).padStart(2, "0");
 
       return `
-        <article class="project-card" id="${project.id}">
-          <div class="project-visual">
-            ${imageMarkup}
+        <article class="project-card" data-project-id="${project.id}">
+          <div class="project-media">
+            ${imageMarkup(image)}
           </div>
-          <div class="project-content">
-            <div class="project-kicker">
-              <span>${projectNumber}</span>
-              <span>${project.tags.join(" / ")}</span>
+          <div class="project-card-body">
+            <div class="project-meta">
+              <span>${number}</span>
+              <span>${project.kicker}</span>
             </div>
             <h3>${project.title}</h3>
             <p class="project-subtitle">${project.subtitle}</p>
             <p>${project.summary}</p>
-
-            <div class="project-proof">
-              <div>
-                <span>Challenge</span>
-                <p>${project.challenge}</p>
-              </div>
-              <div>
-                <span>Approach</span>
-                <p>${project.approach}</p>
-              </div>
-              <div>
-                <span>Result</span>
-                <p>${project.result}</p>
-              </div>
+            <div class="tag-row">
+              ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
             </div>
-
-            <div class="project-details">
-              ${createList("Key Tech", project.tech)}
-              ${createList("Applications", project.applications)}
-            </div>
+            <button class="card-action" type="button" data-open-project="${project.id}">
+              Open case study
+            </button>
           </div>
         </article>
       `;
     })
+    .join("");
+}
+
+function renderCapabilities() {
+  capabilityGrid.innerHTML = data.capabilities
+    .map(
+      (item) => `
+        <article class="capability-item">
+          <h3>${item.title}</h3>
+          <p>${item.body}</p>
+        </article>
+      `
+    )
     .join("");
 }
 
@@ -74,7 +110,7 @@ function renderGallery() {
     }))
   );
 
-  galleryGrid.innerHTML = images
+  galleryRail.innerHTML = images
     .map(
       (image) => `
         <figure class="gallery-item">
@@ -92,10 +128,135 @@ function renderGallery() {
 function renderContact() {
   contactLinks.innerHTML = data.contact
     .filter((item) => item.href)
-    .map((item) => `<a class="button secondary" href="${item.href}" target="_blank" rel="noreferrer">${item.label}</a>`)
+    .map((item) => `<a class="button secondary light" href="${item.href}" target="_blank" rel="noreferrer">${item.label}</a>`)
     .join("");
 }
 
+function renderCaseStudy(project) {
+  const primaryImage = project.images[0];
+  const secondaryImages = project.images.slice(1);
+
+  caseContent.innerHTML = `
+    <article class="case-study">
+      <header class="case-hero">
+        <div>
+          <p class="eyebrow">${project.kicker}</p>
+          <h2 id="case-title">${project.title}</h2>
+          <p class="case-subtitle">${project.subtitle}</p>
+        </div>
+        <div class="case-hero-visual">
+          ${imageMarkup(primaryImage)}
+        </div>
+      </header>
+
+      <section class="case-facts" aria-label="${project.title} facts">
+        <div>
+          <span>Role</span>
+          <p>${project.role}</p>
+        </div>
+        <div>
+          <span>Status</span>
+          <p>${project.status}</p>
+        </div>
+        <div>
+          <span>Timeframe</span>
+          <p>${project.timeframe}</p>
+        </div>
+      </section>
+
+      <section class="case-narrative">
+        <div>
+          <span>Challenge</span>
+          <p>${project.challenge}</p>
+        </div>
+        <div>
+          <span>Approach</span>
+          <p>${project.approach}</p>
+        </div>
+        <div>
+          <span>Result</span>
+          <p>${project.result}</p>
+        </div>
+      </section>
+
+      <section class="case-columns">
+        <div>
+          <h3>Signals</h3>
+          <ul>${listMarkup(project.metrics)}</ul>
+        </div>
+        <div>
+          <h3>Key Tech</h3>
+          <ul>${listMarkup(project.tech)}</ul>
+        </div>
+        <div>
+          <h3>Applications</h3>
+          <ul>${listMarkup(project.applications)}</ul>
+        </div>
+      </section>
+
+      ${
+        secondaryImages.length
+          ? `<section class="case-gallery" aria-label="${project.title} supporting images">
+              ${secondaryImages
+                .map(
+                  (image) => `
+                    <figure>
+                      <img src="${image.src}" alt="${image.alt}">
+                      <figcaption>${image.caption}</figcaption>
+                    </figure>
+                  `
+                )
+                .join("")}
+            </section>`
+          : ""
+      }
+    </article>
+  `;
+}
+
+function openProject(projectId) {
+  const project = data.projects.find((item) => item.id === projectId);
+  if (!project) return;
+
+  renderCaseStudy(project);
+  dialog.showModal();
+  document.body.classList.add("modal-open");
+}
+
+function closeProject() {
+  dialog.close();
+  document.body.classList.remove("modal-open");
+}
+
+function bindInteractions() {
+  projectGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-open-project]");
+    const card = event.target.closest("[data-project-id]");
+    const projectId = button?.dataset.openProject || card?.dataset.projectId;
+    if (projectId) openProject(projectId);
+  });
+
+  projectGrid.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter") return;
+    const card = event.target.closest("[data-project-id]");
+    if (card) openProject(card.dataset.projectId);
+  });
+
+  caseClose.addEventListener("click", closeProject);
+
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) closeProject();
+  });
+
+  dialog.addEventListener("close", () => {
+    document.body.classList.remove("modal-open");
+  });
+}
+
+renderHero();
+renderProof();
 renderProjects();
+renderCapabilities();
 renderGallery();
 renderContact();
+bindInteractions();
