@@ -132,7 +132,7 @@ window.portfolioData = {
       subtitle: "Enhancing the unseen.",
       tags: ["PyTorch", "CUDA", "Synthetic Data", "Attention U-Net"],
       role: "Model architecture, synthetic data generation, training, and evaluation.",
-      status: "Research prototype",
+      status: "Deployed System",
       timeframe: "Grant support work",
       summary: "Enhancement of sparse tomographic images for clearer flaw and weld detection.",
       challenge:
@@ -222,8 +222,8 @@ window.portfolioData = {
       subtitle: "Small indoor drone system.",
       tags: ["Robotics", "Indoor Flight", "Computer Vision", "Optical Flow"],
       role: "Small-scale autonomous platform design, tracking logic, and sensing stack.",
-      status: "Functional prototype",
-      timeframe: "Prototype build",
+      status: "Deployed Product",
+      timeframe: "Completed Build",
       summary:
         "An indoor drone prototype focused on stability, safety, and autonomous tracking in small spaces where GPS is unavailable.",
       challenge:
