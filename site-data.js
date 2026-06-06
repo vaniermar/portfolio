@@ -30,7 +30,7 @@ window.portfolioData = {
     },
     {
       label: "Resume",
-      href: "assets/Marion_Vanier_Resume.pdf",
+      href: "assets/Marion_Vanier_Resume_2026.pdf",
       download: "Marion_Vanier_Resume.pdf",
     },
   ],
