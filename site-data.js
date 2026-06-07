@@ -22,7 +22,7 @@ window.portfolioData = {
     },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/marion.vanier/",
+      href: "https://www.linkedin.com/in/marionvanier",
     },
     {
       label: "GitHub",
